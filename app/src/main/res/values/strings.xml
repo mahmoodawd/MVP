@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Products MVP</string>
+    <string name="home">Home</string>
+    <string name="all_products">All Products</string>
+    <string name="favorites">Favorites</string>
+    <string name="title">ProductTitle</string>
+    <string name="rating">Rating</string>
+    <string name="addFAB">Add To Favorites</string>
+    <string name="exit">Exit</string>
+</resources>
