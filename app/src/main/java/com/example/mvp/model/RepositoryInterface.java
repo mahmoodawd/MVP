@@ -2,12 +2,15 @@ package com.example.mvp.model;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.mvp.network.MyResponse;
 import com.example.mvp.network.NetworkDelegate;
 
 import java.util.List;
 
+import io.reactivex.Single;
+
 public interface RepositoryInterface {
-    void getAllProducts(NetworkDelegate networkDelegate);
+    Single<MyResponse> getAllProducts();
 
     LiveData<List<Product>> getStoredProducts();
 

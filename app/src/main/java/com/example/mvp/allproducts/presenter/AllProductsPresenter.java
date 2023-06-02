@@ -1,6 +1,11 @@
 package com.example.mvp.allproducts.presenter;
 
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
+import android.nfc.Tag;
+import android.util.Log;
+
 import com.example.mvp.allproducts.view.AllProductsFragment;
 import com.example.mvp.allproducts.view.AllProductsViewInterface;
 import com.example.mvp.model.Product;
@@ -10,9 +15,13 @@ import com.example.mvp.network.NetworkDelegate;
 
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 public class AllProductsPresenter implements AllProductsPresenterInterface, NetworkDelegate {
     private AllProductsViewInterface _view;
     private RepositoryInterface _repo;
+    private String TAG = "AllProductsPresenter";
 
     public AllProductsPresenter(AllProductsViewInterface allProductsView, RepositoryInterface repo) {
         this._view = allProductsView;
@@ -21,7 +30,12 @@ public class AllProductsPresenter implements AllProductsPresenterInterface, Netw
 
     @Override
     public void getProducts() {
-        _repo.getAllProducts(this);
+        _repo.getAllProducts().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(myResponse -> _view.displayProducts(myResponse.getProductList()),
+                        throwable -> Log.i(TAG, "GetRM: " + throwable.getMessage()));
+
+
     }
 
     @Override

@@ -5,10 +5,13 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 
 import com.example.mvp.db.ConcreteLocalSource;
+import com.example.mvp.network.MyResponse;
 import com.example.mvp.network.NetworkDelegate;
 import com.example.mvp.network.RemoteSource;
 
 import java.util.List;
+
+import io.reactivex.Single;
 
 public class Repository implements RepositoryInterface {
     private Context context;
@@ -31,8 +34,8 @@ public class Repository implements RepositoryInterface {
     }
 
     @Override
-    public void getAllProducts(NetworkDelegate networkDelegate) {
-        remoteSource.startCall(networkDelegate);
+    public Single<MyResponse> getAllProducts() {
+        return remoteSource.getAllProducts();
     }
 
     @Override
