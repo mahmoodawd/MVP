@@ -1,16 +1,14 @@
-package com.example.mvp.network;
-
-import com.example.mvp.model.Product;
+package com.example.mvp.model;
 
 import java.util.List;
 
-public class MyResponse {
+public class productsResponse {
     private int total;
     private int skip;
     private int limit;
     private List<Product> products;
 
-    public MyResponse(int total, int skip, int limit, List<Product> products) {
+    public productsResponse(int total, int skip, int limit, List<Product> products) {
         this.total = total;
         this.skip = skip;
         this.limit = limit;

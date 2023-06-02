@@ -19,9 +19,6 @@ public interface ProductDoa {
     @Query("SELECT * FROM product")
     Single<List<Product>> getFavorites();
 
-    @Query("SELECT * FROM product WHERE TITLE LIKE :search ")
-    LiveData<List<Product>> findProductWithName(String search);
-
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertAll(Product products);
 

@@ -1,24 +1,16 @@
 package com.example.mvp.allproducts.presenter;
 
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
-import android.nfc.Tag;
 import android.util.Log;
 
-import com.example.mvp.allproducts.view.AllProductsFragment;
 import com.example.mvp.allproducts.view.AllProductsViewInterface;
 import com.example.mvp.model.Product;
-import com.example.mvp.model.Repository;
-import com.example.mvp.model.RepositoryInterface;
-import com.example.mvp.network.NetworkDelegate;
-
-import java.util.List;
+import com.example.mvp.repositories.RepositoryInterface;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class AllProductsPresenter implements AllProductsPresenterInterface, NetworkDelegate {
+public class AllProductsPresenter implements AllProductsPresenterInterface {
     private AllProductsViewInterface _view;
     private RepositoryInterface _repo;
     private String TAG = "AllProductsPresenter";
@@ -43,13 +35,4 @@ public class AllProductsPresenter implements AllProductsPresenterInterface, Netw
         _repo.insert(product);
     }
 
-    @Override
-    public void onSuccess(List<Product> productList) {
-        _view.displayProducts(productList);
-    }
-
-    @Override
-    public void onFailure(Throwable t) {
-
-    }
 }

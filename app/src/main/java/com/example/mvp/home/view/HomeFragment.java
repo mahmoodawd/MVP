@@ -31,9 +31,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        allProductsBtn = view.findViewById(R.id.allProductsBtn);
-        favBtn = view.findViewById(R.id.favsBtn);
-        exitBtn = view.findViewById(R.id.exitBtn);
+        initUI(view);
         allProductsBtn.setOnClickListener(v -> {
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_allProductsFragment);
         });
@@ -44,5 +42,11 @@ public class HomeFragment extends Fragment {
             getActivity().finish();
         });
         return view;
+    }
+
+    private void initUI(View view) {
+        allProductsBtn = view.findViewById(R.id.allProductsBtn);
+        favBtn = view.findViewById(R.id.favsBtn);
+        exitBtn = view.findViewById(R.id.exitBtn);
     }
 }

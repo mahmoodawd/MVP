@@ -1,11 +1,9 @@
 package com.example.mvp.allproducts.view;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +15,7 @@ import com.example.mvp.R;
 import com.example.mvp.allproducts.presenter.AllProductsPresenter;
 import com.example.mvp.db.ConcreteLocalSource;
 import com.example.mvp.model.Product;
-import com.example.mvp.model.Repository;
+import com.example.mvp.repositories.Repository;
 import com.example.mvp.network.API_Client;
 
 import java.util.ArrayList;
@@ -49,6 +47,11 @@ public class AllProductsFragment extends Fragment implements AllProductsViewInte
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initUI(view);
+
+    }
+
+    private void initUI(@NonNull View view) {
         allProductsRecyclerView = view.findViewById(R.id.allProductsRecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.HORIZONTAL);
@@ -59,7 +62,6 @@ public class AllProductsFragment extends Fragment implements AllProductsViewInte
         allProductsRecyclerView.setLayoutManager(layoutManager);
         allProductsRecyclerView.setAdapter(allProductsAdapter);
         allProductsPresenter.getProducts();
-
     }
 
 

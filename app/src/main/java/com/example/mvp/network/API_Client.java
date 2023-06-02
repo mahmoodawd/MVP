@@ -1,5 +1,6 @@
 package com.example.mvp.network;
 
+import com.example.mvp.model.productsResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -41,7 +42,7 @@ public class API_Client implements RemoteSource {
 
 
     @Override
-    public Single<MyResponse> getAllProducts() {
+    public Single<productsResponse> getAllProducts() {
         return apiService.getAllProducts();
     }
 }

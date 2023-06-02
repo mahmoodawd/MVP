@@ -1,12 +1,12 @@
-package com.example.mvp.model;
+package com.example.mvp.repositories;
 
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
 import com.example.mvp.db.ConcreteLocalSource;
-import com.example.mvp.network.MyResponse;
-import com.example.mvp.network.NetworkDelegate;
+import com.example.mvp.model.Product;
+import com.example.mvp.model.productsResponse;
 import com.example.mvp.network.RemoteSource;
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class Repository implements RepositoryInterface {
     }
 
     @Override
-    public Single<MyResponse> getAllProducts() {
+    public Single<productsResponse> getAllProducts() {
         return remoteSource.getAllProducts();
     }
 
@@ -43,10 +43,6 @@ public class Repository implements RepositoryInterface {
         return concreteLocalSource.getStoredProducts();
     }
 
-    @Override
-    public LiveData<List<Product>> searchProduct(String productName) {
-        return concreteLocalSource.searchProduct(productName);
-    }
 
     @Override
     public void insert(Product product) {

@@ -1,20 +1,18 @@
-package com.example.mvp.model;
+package com.example.mvp.repositories;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.mvp.network.MyResponse;
-import com.example.mvp.network.NetworkDelegate;
+import com.example.mvp.model.Product;
+import com.example.mvp.model.productsResponse;
 
 import java.util.List;
 
 import io.reactivex.Single;
 
 public interface RepositoryInterface {
-    Single<MyResponse> getAllProducts();
+    Single<productsResponse> getAllProducts();
 
     Single<List<Product>> getStoredProducts();
-
-    LiveData<List<Product>> searchProduct(String productName);
 
     void insert(Product product);
 

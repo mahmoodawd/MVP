@@ -11,8 +11,6 @@ import io.reactivex.Single;
 public interface LocalSource {
     Single<List<Product>> getStoredProducts();
 
-    LiveData<List<Product>> searchProduct(String productName);
-
     void insert(Product product);
 
     void delete(Product product);

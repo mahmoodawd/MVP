@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.example.mvp.favorites.view.FavProductsViewInterface;
 import com.example.mvp.model.Product;
-import com.example.mvp.model.RepositoryInterface;
+import com.example.mvp.repositories.RepositoryInterface;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
