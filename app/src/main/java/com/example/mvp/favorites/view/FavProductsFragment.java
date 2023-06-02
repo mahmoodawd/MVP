@@ -1,7 +1,6 @@
 package com.example.mvp.favorites.view;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -57,8 +55,7 @@ public class FavProductsFragment extends Fragment implements FavProductsViewInte
         allProductsRecyclerView.setHasFixedSize(true);
         allProductsRecyclerView.setLayoutManager(layoutManager);
         allProductsRecyclerView.setAdapter(productsAdapter);
-        productsPresenter.getProducts();
-        productsPresenter.informView(this);
+        productsPresenter.getFavoritesProducts();
     }
 
 

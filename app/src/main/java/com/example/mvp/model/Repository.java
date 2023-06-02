@@ -39,7 +39,7 @@ public class Repository implements RepositoryInterface {
     }
 
     @Override
-    public LiveData<List<Product>> getStoredProducts() {
+    public Single<List<Product>> getStoredProducts() {
         return concreteLocalSource.getStoredProducts();
     }
 

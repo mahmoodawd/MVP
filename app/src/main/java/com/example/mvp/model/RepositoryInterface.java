@@ -12,7 +12,7 @@ import io.reactivex.Single;
 public interface RepositoryInterface {
     Single<MyResponse> getAllProducts();
 
-    LiveData<List<Product>> getStoredProducts();
+    Single<List<Product>> getStoredProducts();
 
     LiveData<List<Product>> searchProduct(String productName);
 

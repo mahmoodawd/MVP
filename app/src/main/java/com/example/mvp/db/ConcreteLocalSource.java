@@ -8,10 +8,12 @@ import com.example.mvp.model.Product;
 
 import java.util.List;
 
+import io.reactivex.Single;
+
 public class ConcreteLocalSource implements LocalSource {
     private Context context;
     ProductDoa productDoa;
-    LiveData<List<Product>> StoredProducts;
+    LiveData<List<Product>> storedProducts;
     LiveData<List<Product>> targetProduct;
     private static ConcreteLocalSource instance = null;
 
@@ -20,19 +22,18 @@ public class ConcreteLocalSource implements LocalSource {
         this.context = context;
         FavoritesDB db = FavoritesDB.getInstance(context.getApplicationContext());
         productDoa = db.productDoa();
-        StoredProducts = productDoa.getAllProducts();
     }
 
-    public static ConcreteLocalSource getInstance(Context context){
-        if(instance == null){
+    public static ConcreteLocalSource getInstance(Context context) {
+        if (instance == null) {
             instance = new ConcreteLocalSource(context);
         }
         return instance;
     }
 
     @Override
-    public LiveData<List<Product>> getStoredProducts() {
-        return StoredProducts;
+    public Single<List<Product>> getStoredProducts() {
+        return productDoa.getFavorites();
     }
 
     @Override

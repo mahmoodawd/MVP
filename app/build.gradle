@@ -52,6 +52,8 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     //Retrofit Rx adapter
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    //Room To Rx
+    implementation "androidx.room:room-rxjava2:2.5.1"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

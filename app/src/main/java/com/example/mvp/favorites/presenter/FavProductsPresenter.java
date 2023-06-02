@@ -1,21 +1,19 @@
 package com.example.mvp.favorites.presenter;
 
 
-import android.content.Context;
-
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
+import android.util.Log;
 
 import com.example.mvp.favorites.view.FavProductsViewInterface;
 import com.example.mvp.model.Product;
 import com.example.mvp.model.RepositoryInterface;
 
-import java.util.List;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class FavProductsPresenter implements FavProductsPresenterInterface {
     private FavProductsViewInterface _view;
     private RepositoryInterface _repo;
+    private String TAG = "FavProductsPresenter";
 
     public FavProductsPresenter(FavProductsViewInterface favProductsView, RepositoryInterface repo) {
         this._view = favProductsView;
@@ -23,8 +21,11 @@ public class FavProductsPresenter implements FavProductsPresenterInterface {
     }
 
     @Override
-    public LiveData<List<Product>> getProducts() {
-        return _repo.getStoredProducts();
+    public void getFavoritesProducts() {
+        _repo.getStoredProducts().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(favorites -> _view.displayProducts(favorites),
+                        throwable -> Log.i(TAG, "GetRM: " + throwable.getMessage()));
     }
 
     @Override
@@ -32,15 +33,8 @@ public class FavProductsPresenter implements FavProductsPresenterInterface {
         _repo.delete(product);
     }
 
-    @Override
-    public void informView(LifecycleOwner lifecycleOwner) {
-        _repo.getStoredProducts().observe( lifecycleOwner, new Observer<List<Product>>() {
-            @Override
-            public void onChanged(List<Product> products) {
-                _view.displayProducts(products);
-            }
-        });
-    }
+
+
 
 
 }

@@ -12,10 +12,12 @@ import com.example.mvp.model.Product;
 
 import java.util.List;
 
+import io.reactivex.Single;
+
 @Dao
 public interface ProductDoa {
     @Query("SELECT * FROM product")
-    LiveData<List<Product>> getAllProducts();
+    Single<List<Product>> getFavorites();
 
     @Query("SELECT * FROM product WHERE TITLE LIKE :search ")
     LiveData<List<Product>> findProductWithName(String search);
